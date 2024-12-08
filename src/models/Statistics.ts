@@ -1,17 +1,7 @@
-export default class Statistics {
+class Statistics {
     protected bets: number
     protected totalWinnings: number
-    private static _instance: Statistics;
-
-    static getInstance() {
-        if (this._instance) {
-            return this._instance;
-        }
-
-        this._instance = new Statistics();
-        return this._instance;
-    }
-
+    
     constructor() {
         this.bets = 0;
         this.totalWinnings = 0;
@@ -28,5 +18,6 @@ export default class Statistics {
     getRTP(): number {
         return (this.totalWinnings / this.bets) * 100;
     }
-
 }
+
+export default new Statistics();

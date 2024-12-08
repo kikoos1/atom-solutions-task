@@ -1,4 +1,5 @@
 import {StatusTypes} from "./enums";
+import {Response} from "express";
 
 export interface PlayParams {
     bet: number
@@ -20,16 +21,13 @@ export interface PlayResponse {
     winnings: number
 }
 
-export interface GetRTPResponse {
+export interface GetRTPResponse extends Response{
     rtp: number
 }
 
-export interface DepositFundsParams {
-    amount: number
-}
 
-export interface WithdrawFundsParams {
-    amount: number
+export interface BaseWalletParams{
+    amount:number
 }
 
 export interface GetBalanceResponse {
@@ -38,4 +36,8 @@ export interface GetBalanceResponse {
 
 export interface BaseResponse {
     status: StatusTypes
+}
+
+export interface BaseErrorResponse extends BaseResponse {
+    error: string
 }

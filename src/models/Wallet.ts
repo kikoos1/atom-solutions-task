@@ -1,15 +1,5 @@
-export default class Wallet {
+class Wallet {
     protected balance: number
-    private static _instance: Wallet;
-
-    static getInstance() {
-        if (this._instance) {
-            return this._instance;
-        }
-
-        this._instance = new Wallet();
-        return this._instance;
-    }
 
     constructor() {
         this.balance = 100;
@@ -26,5 +16,6 @@ export default class Wallet {
     getBalance() {
         return this.balance;
     }
-
 }
+
+export default new Wallet();

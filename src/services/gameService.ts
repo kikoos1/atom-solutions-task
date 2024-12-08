@@ -1,16 +1,7 @@
-import {generateRandomNumber} from "../utils";
 import {PlayResponse} from "../utils/interfaces";
-import Wallet from "../state/wallet";
-import Statistics from "../state/statistics";
+import Statistics from "../models/Statistics";
 
 export default class GameService {
-    protected stats: Statistics;
-
-    constructor() {
-        this.stats = Statistics.getInstance();
-    }
-
-
     spin(bet: number): PlayResponse {
         const matrix = this.generateGrid();
         let winnings = 0;
@@ -23,8 +14,8 @@ export default class GameService {
             }
         }
 
-        this.stats.increaseBets(bet);
-        this.stats.increaseWinnings(winnings);
+        Statistics.increaseBets(bet);
+        Statistics.increaseWinnings(winnings);
 
 
         return {
@@ -45,12 +36,16 @@ export default class GameService {
         for (const row of initialGrid) {
             const newRow = [];
             for (let i = 0; i < 3; i++) {
-                const index = generateRandomNumber(0, row.length);
+                const index = this.generateRandomNumber(0, row.length);
                 newRow.push(row[index].toString())
             }
             generatedGrid.push(newRow);
         }
 
         return generatedGrid;
+    }
+
+    private generateRandomNumber(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min) + min);
     }
 }

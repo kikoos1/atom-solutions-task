@@ -1,10 +1,8 @@
 // src/index.ts
 import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
-import {getRTPHandler, playHandler, simHandler} from "./functions/game";
-import {handleErrorMiddleware} from "./utils";
-import * as Wallet from './state/wallet'
-import {depositFundsHandler, getBalanceHandler, withdrawFundsHandler} from "./functions/wallet";
+import GameController from "./controllers/game/GameController";
+import WalletController from "./controllers/wallet/WalletController";
 
 dotenv.config();
 
@@ -17,19 +15,17 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Express + TypeScript Server");
 });
 
-app.post("/play", handleErrorMiddleware, playHandler);
+app.post("/play", GameController.play);
 
-app.post("/sim", handleErrorMiddleware, simHandler);
+app.post("/sim", GameController.sim);
+//
+app.get("/rtp", GameController.getRTP);
 
-app.get("/rtp", getRTPHandler);
+app.post("/wallet/deposit", WalletController.depositFunds);
 
+app.post("/wallet/withdraw", WalletController.withdrawFunds);
 
-app.post("/wallet/deposit", depositFundsHandler);
-
-app.post("/wallet/withdraw", withdrawFundsHandler);
-
-app.get("/wallet/balance", getBalanceHandler);
-// app.use(handleErrorMiddleware);
+app.get("/wallet/balance", WalletController.getBalance);
 
 
 app.listen(port, () => {
