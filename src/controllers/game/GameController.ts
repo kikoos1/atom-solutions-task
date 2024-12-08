@@ -95,7 +95,7 @@ export default class GameController {
 
     static getRTP(req: Request, res: Response): void {
         res.status(200).json(<GetRTPResponse>{
-            rtp: Statistics.getRTP()
+            rtp: Statistics.getRTP() || 0
         });
     }
 }

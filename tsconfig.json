@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "build",
+    "sourceMap": true,
+    "strict": true,
+    "baseUrl": "src",
+    "rootDir": "./src",
+    "target": "es2021",
+    "esModuleInterop": true
+  },
+  "compileOnSave": true,
+  "include": [
+    "./src"
+  ],
+  "exclude": ["**/*.test.*", "**/__mocks__/*", "**/__tests__/*"]
+}

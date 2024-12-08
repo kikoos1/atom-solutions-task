@@ -11,13 +11,15 @@ ARG NODE_VERSION=18.0.0
 FROM node:${NODE_VERSION}-alpine
 
 # Set the working directory
-WORKDIR /app/src
+WORKDIR /app
 
 # Copy the package.json and package-lock.json files
-COPY ./package*.json /app
+COPY ./package*.json .
 
 # Install the dependencies
 RUN npm install
+
+WORKDIR /app/src
 
 # Copy the rest of the code
 ADD . .
