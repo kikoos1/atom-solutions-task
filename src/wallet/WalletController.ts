@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { StatusTypes } from '../utils/enums';
-import { handleError } from '../utils/errors';
+import { handleError, StatusTypes } from '../errors';
 import WalletService from './WalletService';
 
 export default class WalletController {

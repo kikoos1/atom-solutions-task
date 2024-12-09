@@ -1,13 +1,12 @@
 import Wallet from './Wallet';
-import { ValidationError } from '../utils/errors';
-import { ErrorTypes } from '../utils/enums';
+import { ValidationError, ErrorTypes } from '../errors';
 
-interface BaseWalletParams{
-    amount:number
+interface BaseWalletParams {
+    amount: number;
 }
 
 interface GetBalanceResponse {
-    balance: number
+    balance: number;
 }
 
 export default class WalletService {
@@ -33,11 +32,11 @@ export default class WalletService {
         Wallet.deduct(params.amount);
     }
 
-    static getBalance():GetBalanceResponse{
+    static getBalance(): GetBalanceResponse {
         const balance = Wallet.getBalance();
 
         return {
-            balance: balance
-        }
+            balance: balance,
+        };
     }
 }

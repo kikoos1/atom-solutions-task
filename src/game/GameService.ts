@@ -1,31 +1,30 @@
 import Statistics from './Game';
-import { ErrorTypes } from '../utils/enums';
 import Wallet from '../wallet/Wallet';
-import { ValidationError } from '../utils/errors';
+import { ValidationError, ErrorTypes } from '../errors';
 import Game from './Game';
 
 interface PlayParams {
-    bet: number
+    bet: number;
 }
 
 interface SimParams {
-    count: number
-    bet: number
+    count: number;
+    bet: number;
 }
 
 interface SimResponse {
-    totalWinnings: number
-    netResult: number
+    totalWinnings: number;
+    netResult: number;
 }
 
 
 interface PlayResponse {
     matrix: string[][];
-    winnings: number
+    winnings: number;
 }
 
-interface GetRTPResponse{
-    rtp: number
+interface GetRTPResponse {
+    rtp: number;
 }
 
 export default class GameService {

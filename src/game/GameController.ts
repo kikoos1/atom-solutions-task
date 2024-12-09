@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import GameService from './GameService';
-import { handleError } from '../utils/errors';
+import { handleError } from '../errors';
 
 
 export default class GameController {

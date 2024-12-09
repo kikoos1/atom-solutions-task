@@ -1,5 +1,5 @@
 import WalletService from '../../wallet/WalletService';
-import { ValidationError } from '../../utils/errors';
+import { ValidationError } from '../../errors';
 
 describe('Wallet', () => {
     describe('Wallet deposit', () => {

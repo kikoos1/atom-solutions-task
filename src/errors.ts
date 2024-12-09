@@ -1,5 +1,14 @@
 import { Response } from 'express';
-import { StatusTypes } from './enums';
+
+
+export enum StatusTypes {
+    success = 'success',
+    error = "error"
+}
+
+export enum ErrorTypes{
+    insufficientFunds = 'Insufficient funds'
+}
 
 export class ValidationError extends Error {
     errorCode: number;
