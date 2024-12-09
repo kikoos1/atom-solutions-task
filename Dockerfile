@@ -28,4 +28,5 @@ ADD . .
 EXPOSE 3000
 
 # Define the command to run the app
-CMD npm run dev
+CMD npm run build && npm run start
+
