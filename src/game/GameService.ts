@@ -1,7 +1,7 @@
 import Statistics from './Game';
-import Wallet from '../wallet/Wallet';
 import { ValidationError, ErrorTypes } from '../errors';
 import Game from './Game';
+import WalletService from '../wallet/WalletService';
 
 interface PlayParams {
     bet: number;
@@ -33,15 +33,23 @@ class GameService {
             throw new ValidationError('Validation Error: "bet" is required!');
         }
 
-        if (Wallet.getBalance() < params.bet) {
+        const { balance } = WalletService.getBalance();
+
+        if (balance < params.bet) {
             throw new Error(ErrorTypes.insufficientFunds);
         }
 
-        Wallet.deduct(params.bet);
+        WalletService.deductFunds({
+            amount: params.bet,
+        });
 
         const { matrix, winnings } = this.spin(params.bet);
 
-        Wallet.add(winnings);
+        if (winnings > 0) {
+            WalletService.addFunds({
+                amount: winnings,
+            });
+        }
 
         return {
             matrix,
@@ -60,12 +68,16 @@ class GameService {
 
 
         const totalBet = params.bet * params.count;
+        const { balance } = WalletService.getBalance();
 
-        if (Wallet.getBalance() < totalBet) {
+        if (balance < totalBet) {
             throw new Error(ErrorTypes.insufficientFunds);
         }
 
-        Wallet.deduct(totalBet);
+        WalletService.deductFunds({
+            amount: params.bet,
+        });
+
         let totalWinnings = 0;
 
         for (let i = 0; i < params.count; i++) {
@@ -74,7 +86,12 @@ class GameService {
         }
 
         const netResult = totalWinnings - totalBet;
-        Wallet.add(totalWinnings);
+
+        if (totalWinnings > 0) {
+            WalletService.addFunds({
+                amount: totalWinnings,
+            });
+        }
 
         return {
             totalWinnings: totalWinnings,

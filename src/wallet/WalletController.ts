@@ -5,7 +5,7 @@ import WalletService from './WalletService';
 class WalletController {
      depositFunds(req: Request, res: Response): void {
         try {
-            WalletService.depositFunds(req.body);
+            WalletService.addFunds(req.body);
             res.send({
                 status: StatusTypes.success,
             });
@@ -16,7 +16,7 @@ class WalletController {
 
      withdrawFunds(req: Request, res: Response): void {
         try {
-            WalletService.withdrawFunds(req.body);
+            WalletService.deductFunds(req.body);
             res.send({
                 status: StatusTypes.success,
             });

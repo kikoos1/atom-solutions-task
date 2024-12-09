@@ -10,7 +10,7 @@ interface GetBalanceResponse {
 }
 
 class WalletService {
-    depositFunds(params: BaseWalletParams) {
+    addFunds(params: BaseWalletParams) {
         if (!params.amount) {
             throw new ValidationError('Validation Error: "amount" is required!');
         }
@@ -18,7 +18,7 @@ class WalletService {
         Wallet.add(params.amount);
     }
 
-    withdrawFunds(params: BaseWalletParams) {
+    deductFunds(params: BaseWalletParams) {
         if (!params.amount) {
             throw new ValidationError('Validation Error: "amount" is required!');
         }
