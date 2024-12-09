@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import GameController from './controllers/game/GameController';
-import WalletController from './controllers/wallet/WalletController';
+import GameController from './game/GameController';
+import WalletController from './wallet/WalletController';
 
 const router = express.Router()
 

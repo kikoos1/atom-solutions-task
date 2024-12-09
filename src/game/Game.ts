@@ -1,4 +1,4 @@
-class Statistics {
+class Game {
     protected bets: number
     protected totalWinnings: number
     
@@ -20,4 +20,4 @@ class Statistics {
     }
 }
 
-export default new Statistics();
+export default new Game();
