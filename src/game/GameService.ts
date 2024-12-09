@@ -1,5 +1,5 @@
 import Statistics from './Game';
-import { ValidationError, ErrorTypes } from '../errors';
+import { ValidationError } from '../errors';
 import Game from './Game';
 import WalletService from '../wallet/WalletService';
 
@@ -33,12 +33,6 @@ class GameService {
             throw new ValidationError('Validation Error: "bet" is required!');
         }
 
-        const { balance } = WalletService.getBalance();
-
-        if (balance < params.bet) {
-            throw new Error(ErrorTypes.insufficientFunds);
-        }
-
         WalletService.deductFunds({
             amount: params.bet,
         });
@@ -68,11 +62,6 @@ class GameService {
 
 
         const totalBet = params.bet * params.count;
-        const { balance } = WalletService.getBalance();
-
-        if (balance < totalBet) {
-            throw new Error(ErrorTypes.insufficientFunds);
-        }
 
         WalletService.deductFunds({
             amount: params.bet,
