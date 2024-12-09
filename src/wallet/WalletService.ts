@@ -10,7 +10,6 @@ interface GetBalanceResponse {
     balance: number
 }
 
-
 export default class WalletService {
     static depositFunds(params: BaseWalletParams) {
         if (!params.amount) {

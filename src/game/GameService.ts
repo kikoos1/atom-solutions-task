@@ -91,7 +91,6 @@ export default class GameService {
         };
     }
 
-
     private static spin(bet: number): PlayResponse {
         const matrix = this.generateGrid();
         let winnings = 0;

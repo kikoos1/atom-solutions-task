@@ -13,8 +13,6 @@ export default class WalletController {
         } catch (e) {
             handleError(e, res);
         }
-
-
     }
 
     static withdrawFunds(req: Request, res: Response): void {
@@ -30,7 +28,6 @@ export default class WalletController {
     }
 
     static getBalance(req: Request, res: Response): void {
-
         const balanceResponse = WalletService.getBalance();
         res.json(balanceResponse);
     }
