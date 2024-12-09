@@ -9,8 +9,8 @@ interface GetBalanceResponse {
     balance: number;
 }
 
-export default class WalletService {
-    static depositFunds(params: BaseWalletParams) {
+class WalletService {
+    depositFunds(params: BaseWalletParams) {
         if (!params.amount) {
             throw new ValidationError('Validation Error: "amount" is required!');
         }
@@ -18,7 +18,7 @@ export default class WalletService {
         Wallet.add(params.amount);
     }
 
-    static withdrawFunds(params: BaseWalletParams) {
+    withdrawFunds(params: BaseWalletParams) {
         if (!params.amount) {
             throw new ValidationError('Validation Error: "amount" is required!');
         }
@@ -32,7 +32,7 @@ export default class WalletService {
         Wallet.deduct(params.amount);
     }
 
-    static getBalance(): GetBalanceResponse {
+    getBalance(): GetBalanceResponse {
         const balance = Wallet.getBalance();
 
         return {
@@ -40,3 +40,5 @@ export default class WalletService {
         };
     }
 }
+
+export default new WalletService();

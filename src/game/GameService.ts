@@ -27,8 +27,8 @@ interface GetRTPResponse {
     rtp: number;
 }
 
-export default class GameService {
-    static play(params: PlayParams): PlayResponse {
+class GameService {
+    play(params: PlayParams): PlayResponse {
         if (!params.bet) {
             throw new ValidationError('Validation Error: "bet" is required!');
         }
@@ -49,7 +49,7 @@ export default class GameService {
         };
     }
 
-    static sim(params: SimParams): SimResponse {
+    sim(params: SimParams): SimResponse {
         if (!params.bet) {
             throw new ValidationError('Validation Error: "bet" is required!');
         }
@@ -82,7 +82,7 @@ export default class GameService {
         };
     }
 
-    static getRtp(): GetRTPResponse {
+    getRtp(): GetRTPResponse {
         const rtp = Game.getRTP();
 
         return {
@@ -90,7 +90,7 @@ export default class GameService {
         };
     }
 
-    private static spin(bet: number): PlayResponse {
+    private spin(bet: number): PlayResponse {
         const matrix = this.generateGrid();
         let winnings = 0;
 
@@ -112,7 +112,7 @@ export default class GameService {
         };
     }
 
-    private static generateGrid(): string[][] {
+    private generateGrid(): string[][] {
         const initialGrid = [
             [1, 2, 3, 4, 5],
             [1, 3, 2, 5, 4],
@@ -133,7 +133,9 @@ export default class GameService {
         return generatedGrid;
     }
 
-    private static generateRandomNumber(min: number, max: number): number {
+    private generateRandomNumber(min: number, max: number): number {
         return Math.floor(Math.random() * (max - min) + min);
     }
 }
+
+export default new GameService();

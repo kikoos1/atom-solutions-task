@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { handleError, StatusTypes } from '../errors';
 import WalletService from './WalletService';
 
-export default class WalletController {
-    static depositFunds(req: Request, res: Response): void {
+class WalletController {
+     depositFunds(req: Request, res: Response): void {
         try {
             WalletService.depositFunds(req.body);
             res.send({
@@ -14,7 +14,7 @@ export default class WalletController {
         }
     }
 
-    static withdrawFunds(req: Request, res: Response): void {
+     withdrawFunds(req: Request, res: Response): void {
         try {
             WalletService.withdrawFunds(req.body);
             res.send({
@@ -26,10 +26,10 @@ export default class WalletController {
 
     }
 
-    static getBalance(req: Request, res: Response): void {
+     getBalance(req: Request, res: Response): void {
         const balanceResponse = WalletService.getBalance();
         res.json(balanceResponse);
     }
-
-
 }
+
+export default new WalletController();

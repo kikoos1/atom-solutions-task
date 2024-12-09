@@ -2,9 +2,8 @@ import { Request, Response } from 'express';
 import GameService from './GameService';
 import { handleError } from '../errors';
 
-
-export default class GameController {
-    static play(req: Request, res: Response): void {
+class GameController {
+    play(req: Request, res: Response): void {
         try {
             const playResponse = GameService.play(req.body);
             res.send(playResponse);
@@ -13,7 +12,7 @@ export default class GameController {
         }
     }
 
-    static sim(req: Request, res: Response): void {
+    sim(req: Request, res: Response): void {
         try {
             const simResponse = GameService.sim(req.body);
             res.send(simResponse);
@@ -23,8 +22,10 @@ export default class GameController {
 
     }
 
-    static getRTP(req: Request, res: Response): void {
+    getRTP(req: Request, res: Response): void {
         const rtpResponse = GameService.getRtp();
         res.json(rtpResponse);
     }
 }
+
+export default new GameController();

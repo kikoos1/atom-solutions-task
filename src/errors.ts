@@ -1,6 +1,5 @@
 import { Response } from 'express';
 
-
 export enum StatusTypes {
     success = 'success',
     error = "error"
